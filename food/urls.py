@@ -22,6 +22,8 @@ from django.urls import include, re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.views.generic.base import RedirectView
+
 
 from rest_framework_swagger.views import get_swagger_view
 
@@ -51,4 +53,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/calculate_delivery_cost/', CalculateDeliveryCost.as_view(), name='calculate food delivery cost'),
+    re_path(r'^.*$', RedirectView.as_view(url='swagger/', permanent=False)),
 ]
